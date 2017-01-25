@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<plugin>
+    <name>SPOD Reputation</name>
+    <key>spodreputation</key>
+    <description>Reputation mechanics for SPOD platform</description>
+    <author>Dario Castellano</author>
+    <authorEmail>dariocastellano18@gmail.com</authorEmail>
+    <authorUrl>www.linkedin.com/in/dariocast94</authorUrl>
+    <developerKey>a56a0e36bf00931c71952636df649b0e</developerKey>
+    <build>1</build>
+    <copyright>Dario Castellano</copyright>
+    <license>The BSD License</license>
+    <licenseUrl>http://www.opensource.org/licenses/bsd-license.php</licenseUrl>
+</plugin>
