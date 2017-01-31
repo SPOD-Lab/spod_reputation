@@ -1,0 +1,35 @@
+<link rel="stylesheet" type="text/css" href="{$components_url}datalets/datatable-datalet/js/DataTables/datatables.css" class="style-scope datatable-datalet">
+<div id="detailFloatBox">
+{assign var="i" value=0}
+<table class="stripe row-border style-scope datatable-datalet dataTable no-footer">
+    <thead>
+        <th class="ui-state-default">{text key=$prefix|cat:"position"}</th>
+        <th class="ui-state-default">{text key=$prefix|cat:"avatar"}</th>
+        <th class="ui-state-default">{text key=$prefix|cat:"reputation"}</th>
+        <th class="ui-state-default">{text key=$prefix|cat:"level"}</th>
+    </thead>
+
+    <tbody>
+    {foreach from=$users item='user'}
+        <tr class="{if $leaderboard[$i]->userId == $currentUser}ui-state-error{else if $position%2 == 0}even{else}odd{/if}">
+            <td class="dt-center">{$position++}
+            <td class="dt-center">{decorator name='avatar_item' data=$user}
+            <td class="dt-center">{$leaderboard[$i]->reputation}
+            <td class="dt-center">{$leaderboard[$i]->level}
+        </tr>
+    {assign var="i" value=$i+1}
+    {/foreach}
+    </tbody>
+</table>
+
+<div class="ow_right">
+    <span class="ow_button" style="margin:5px; float: right;">
+        <input type="button" class="ow_ic_right_arrow" value="Next" id="next_button" onclick="SPODREPUTATION.showElse({$leaderboard[$i-1]->reputation},{$currentUser},'next')">
+    </span>
+</div>
+<div class="ow_left">
+    <span class="ow_button" style="margin:5px; float: right;">
+        <input type="button" class="ow_ic_left_arrow" value="Prev" id="prev_button" onclick="SPODREPUTATION.showElse({$leaderboard[0]->reputation},{$currentUser},'prev')">
+    </span>
+</div>
+</div>
