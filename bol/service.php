@@ -55,9 +55,36 @@ class SPODREPUTATION_BOL_Service
     }
 
     public function getLeaderboardForUser($userId) {
+        $userRep = $this->findByUserId($userId);
         $example = new OW_Example();
+        $example->andFieldLessOrEqual('reputation',$userRep->reputation);
         $example->setOrder('reputation DESC');
+        $example->setLimitClause(0,10);
         return $this->reputationDao->findListByExample($example);
+    }
+
+    public function getPreviousLeaderboard($bound) {
+        $example = new OW_Example();
+        $example->andFieldGreaterThenOrEqual('reputation',$bound);
+        $example->setOrder('reputation ASC');
+        $example->setLimitClause(0,10);
+        return array_reverse($this->reputationDao->findListByExample($example));
+    }
+
+    public function getNextLeaderboard($bound) {
+        $example = new OW_Example();
+        $example->andFieldLessOrEqual('reputation',$bound);
+        $example->setOrder('reputation DESC');
+        $example->setLimitClause(0,10);
+        return $this->reputationDao->findListByExample($example);
+    }
+
+    public function findUserPosition($userId) {
+        $userRep = $this->findByUserId($userId);
+        $example = new OW_Example();
+        $example->andFieldGreaterThenOrEqual('reputation',$userRep->reputation);
+        $count = count($this->reputationDao->findListByExample($example));
+        return $count==1?$count:$count-1;
     }
 
     public function update($reputationValue,$userId) {
@@ -111,6 +138,7 @@ class SPODREPUTATION_BOL_Service
                 $reputation->timestamp = date('Y-m-d',time());
                 $this->reputationDao->save($reputation);
             }
+            SPODREPUTATION_CLASS_Evaluation::getInstance()->evaluate($user->id);
         }
     }
 }
