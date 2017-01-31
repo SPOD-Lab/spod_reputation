@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<prefix name="spodreputation" label="SPOD Reputation" language_tag="en" language_label="English">
+<key name="widget_title"><value>My Reputation</value></key>
+<key name="leaderboard_title"><value>Leaderboard</value></key>
+<key name="position"><value>Position</value></key>
+<key name="avatar"><value>User</value></key>
+<key name="reputation"><value>Reputation</value></key>
+<key name="level"><value>Level</value></key>
+</prefix>
