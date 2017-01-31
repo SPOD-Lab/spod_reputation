@@ -11,7 +11,7 @@
 
     <tbody>
     {foreach from=$users item='user'}
-        <tr class="{if $leaderboard[$i]->userId == $currentUser}ui-state-error{else if $position%2 == 0}even{else}odd{/if}">
+        <tr class="{if $leaderboard[$i]->userId == $loggedUser}ui-state-error{else if $position%2 == 0}even{else}odd{/if}" {if $leaderboard[$i]->userId == $currentUser}style="font-style: italic; text-decoration: underline;"{/if}>
             <td class="dt-center">{$position++}
             <td class="dt-center">{decorator name='avatar_item' data=$user}
             <td class="dt-center">{$leaderboard[$i]->reputation}
@@ -27,6 +27,13 @@
         <input type="button" class="ow_ic_right_arrow" value="Next" id="next_button" onclick="SPODREPUTATION.showElse({$leaderboard[$i-1]->reputation},{$currentUser},'next')">
     </span>
 </div>
+
+    <div class="ow_right">
+    <span class="ow_button" style="margin:5px; float: right;">
+        <input type="button" value="Find Me" onclick="SPODREPUTATION.showElse(null,{$loggedUser},null)">
+    </span>
+    </div>
+
 <div class="ow_left">
     <span class="ow_button" style="margin:5px; float: right;">
         <input type="button" class="ow_ic_left_arrow" value="Prev" id="prev_button" onclick="SPODREPUTATION.showElse({$leaderboard[0]->reputation},{$currentUser},'prev')">
