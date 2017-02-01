@@ -82,9 +82,9 @@ class SPODREPUTATION_BOL_Service
     public function findUserPosition($userId) {
         $userRep = $this->findByUserId($userId);
         $example = new OW_Example();
-        $example->andFieldGreaterThenOrEqual('reputation',$userRep->reputation);
+        $example->andFieldGreaterThan('reputation',$userRep->reputation);
         $count = count($this->reputationDao->findListByExample($example));
-        return $count;
+        return ++$count;
     }
 
     public function update($reputationValue,$userId) {
