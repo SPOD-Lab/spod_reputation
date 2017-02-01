@@ -26,7 +26,7 @@ class SPODREPUTATION_CLASS_Evaluation
 
     public function evaluate($userId) {
         $reputationValue = 0;
-        //var_dump(intval( count( $this->getLikes($userId) ) * SPODREPUTATION_CLASS_Constants::LIKE_WEIGHT )." like\n");
+        //var_dump(intval( $this->getLikes($userId) * SPODREPUTATION_CLASS_Constants::LIKE_WEIGHT )." like\n");
         $reputationValue += intval( $this->getLikes($userId)  * SPODREPUTATION_CLASS_Constants::LIKE_WEIGHT );
         //var_dump(intval( ($this->getCommentsOnPosts($userId) + count( $this->getCommentsOnComments($userId)) ) * SPODREPUTATION_CLASS_Constants::COMMENT_WEIGHT )." comm\n");
         $reputationValue += intval( ($this->getCommentsOnPosts($userId) + count( $this->getCommentsOnComments($userId)) ) * SPODREPUTATION_CLASS_Constants::COMMENT_WEIGHT );
@@ -41,8 +41,8 @@ class SPODREPUTATION_CLASS_Evaluation
         //var_dump(intval( count( $this->getCocreationRoomJoined($userId)) * SPODREPUTATION_CLASS_Constants::ROOM_JOINED_WEIGHT)." room joined\n");
         $reputationValue += intval( count( $this->getCocreationRoomJoined($userId)) * SPODREPUTATION_CLASS_Constants::ROOM_JOINED_WEIGHT);
         //var_dump(intval( count( $this->getDataletComment($userId)) * SPODREPUTATION_CLASS_Constants::DATALET_COMMENT_WEIGHT)." datalet in comm\n");
-        $reputationValue += intval( count( $this->getDataletComment($userId)) * SPODREPUTATION_CLASS_Constants::DATALET_COMMENT_WEIGHT);
-        //var_dump(intval( count( $this->getPostUserWall($userId)) * SPODREPUTATION_CLASS_Constants::ONMYWALL_WEIGHT)." wall\n");die();
+        //$reputationValue += intval( count( $this->getDataletComment($userId)) * SPODREPUTATION_CLASS_Constants::DATALET_COMMENT_WEIGHT); //not correctly evalued
+        //var_dump(intval( count( $this->getPostUserWall($userId)) * SPODREPUTATION_CLASS_Constants::ONMYWALL_WEIGHT)." wall\n");
         $reputationValue += intval( count( $this->getPostUserWall($userId)) * SPODREPUTATION_CLASS_Constants::ONMYWALL_WEIGHT);
 
         SPODREPUTATION_BOL_Service::getInstance()->update($reputationValue,$userId);

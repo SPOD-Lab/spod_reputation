@@ -84,7 +84,7 @@ class SPODREPUTATION_BOL_Service
         $example = new OW_Example();
         $example->andFieldGreaterThenOrEqual('reputation',$userRep->reputation);
         $count = count($this->reputationDao->findListByExample($example));
-        return $count==1?$count:$count-1;
+        return $count;
     }
 
     public function update($reputationValue,$userId) {

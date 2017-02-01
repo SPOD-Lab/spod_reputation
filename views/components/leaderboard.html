@@ -23,20 +23,23 @@
 </table>
 
 <div class="ow_right">
-    <span class="ow_button" style="margin:5px; float: right;">
-        <input type="button" class="ow_ic_right_arrow" value="Next" id="next_button" onclick="SPODREPUTATION.showElse({$leaderboard[$i-1]->reputation},{$currentUser},'next')">
-    </span>
-</div>
-
-    <div class="ow_right">
-    <span class="ow_button" style="margin:5px; float: right;">
-        <input type="button" value="Find Me" onclick="SPODREPUTATION.showElse(null,{$loggedUser},null)">
-    </span>
-    </div>
-
-<div class="ow_left">
-    <span class="ow_button" style="margin:5px; float: right;">
-        <input type="button" class="ow_ic_left_arrow" value="Prev" id="prev_button" onclick="SPODREPUTATION.showElse({$leaderboard[0]->reputation},{$currentUser},'prev')">
-    </span>
-</div>
+    <table>
+        <tr>
+            <td>
+                <span class="ow_button" style="margin:5px; float: right;">
+                    <input type="button" class="ow_ic_left_arrow" value="Prev" id="prev_button" onclick="SPODREPUTATION.showElse({$leaderboard[0]->reputation},{$currentUser},'prev')">
+                </span>
+            </td>
+            <td>
+                <span class="ow_button" style="margin:5px; float: right;">
+                    <input type="button" value="Find Me" onclick="SPODREPUTATION.showElse(null,{$loggedUser},null)">
+                </span>
+            </td>
+            <td>
+                <span class="ow_button" style="margin:5px; float: right;">
+                    <input type="button" class="ow_ic_right_arrow" value="Next" id="next_button" onclick="SPODREPUTATION.showElse({$leaderboard[$i-1]->reputation},{$currentUser},'next')">
+                </span>
+            </td>
+        </tr>
+    </table>
 </div>

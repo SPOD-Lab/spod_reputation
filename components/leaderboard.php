@@ -57,9 +57,6 @@ SPODREPUTATION.showElse = function(score,userId,flag) {
         $this->assign('position',$this->position);
         $this->assign('currentUser',$this->userId);
         $this->assign('loggedUser',OW::getUser()->getId());
-        if($params['position']) {
-            $this->assign('position',300);
-        }
         $this->assign('prefix','spodreputation+');
         $this->assign('components_url', SPODPR_COMPONENTS_URL);
 
