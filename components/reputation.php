@@ -17,7 +17,16 @@ class SPODREPUTATION_CMP_Reputation extends  BASE_CLASS_Widget
 
         $this->userId =  $paramObject->additionalParamList['entityId'] != null ? $paramObject->additionalParamList['entityId'] : OW::getUser()->getId();
 
-        SPODREPUTATION_CLASS_Evaluation::getInstance()->evaluate($this->userId);
+        if(OW::getPluginManager()->isPluginActive('ode') &&
+            OW::getPluginManager()->isPluginActive('spodpublic') &&
+            OW::getPluginManager()->isPluginActive('spodpr') &&
+            OW::getPluginManager()->isPluginActive('cocreation') &&
+            OW::getPluginManager()->isPluginActive('newsfeed') &&
+            OW::getPluginManager()->isPluginActive('mailbox')
+        ){
+            SPODREPUTATION_CLASS_Evaluation::getInstance()->evaluate($this->userId);
+        }
+
         $this->reputationRecord = SPODREPUTATION_BOL_Service::getInstance()->findByUserId($this->userId);
 
         OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodreputation')->getStaticJsUrl() . 'spodreputation.js', 'text/javascript');

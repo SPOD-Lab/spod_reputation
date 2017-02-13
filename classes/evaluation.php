@@ -26,23 +26,13 @@ class SPODREPUTATION_CLASS_Evaluation
 
     public function evaluate($userId) {
         $reputationValue = 0;
-        //var_dump(intval( $this->getLikes($userId) * SPODREPUTATION_CLASS_Constants::LIKE_WEIGHT )." like\n");
         $reputationValue += intval( $this->getLikes($userId)  * SPODREPUTATION_CLASS_Constants::LIKE_WEIGHT );
-        //var_dump(intval( ($this->getCommentsOnPosts($userId) + count( $this->getCommentsOnComments($userId)) ) * SPODREPUTATION_CLASS_Constants::COMMENT_WEIGHT )." comm\n");
         $reputationValue += intval( ($this->getCommentsOnPosts($userId) + count( $this->getCommentsOnComments($userId)) ) * SPODREPUTATION_CLASS_Constants::COMMENT_WEIGHT );
-        //var_dump(intval( count( $this->getPersonalMessages($userId) ) * SPODREPUTATION_CLASS_Constants::MESSAGE_WEIGHT )." message\n");
         $reputationValue += intval( count( $this->getPersonalMessages($userId) ) * SPODREPUTATION_CLASS_Constants::MESSAGE_WEIGHT );
-        //var_dump(intval( count( $this->getUserFollower($userId) ) * SPODREPUTATION_CLASS_Constants::FOLLOWER_WEIGHT )." follow\n");
         $reputationValue += intval( count( $this->getUserFollower($userId) ) * SPODREPUTATION_CLASS_Constants::FOLLOWER_WEIGHT );
-        //var_dump(intval( $this->getAgoraInfo($userId) )." agora\n");
         $reputationValue += intval( $this->getAgoraInfo($userId) );
-        //var_dump(intval( count( $this->getDataletDatasetUserBased($userId)) * SPODREPUTATION_CLASS_Constants::DATALET_COCREATED_DATASET )." datalet su dataset cocreato da user\n");
         $reputationValue += intval( count( $this->getDataletDatasetUserBased($userId)) * SPODREPUTATION_CLASS_Constants::DATALET_COCREATED_DATASET );
-        //var_dump(intval( count( $this->getCocreationRoomJoined($userId)) * SPODREPUTATION_CLASS_Constants::ROOM_JOINED_WEIGHT)." room joined\n");
         $reputationValue += intval( count( $this->getCocreationRoomJoined($userId)) * SPODREPUTATION_CLASS_Constants::ROOM_JOINED_WEIGHT);
-        //var_dump(intval( count( $this->getDataletComment($userId)) * SPODREPUTATION_CLASS_Constants::DATALET_COMMENT_WEIGHT)." datalet in comm\n");
-        //$reputationValue += intval( count( $this->getDataletComment($userId)) * SPODREPUTATION_CLASS_Constants::DATALET_COMMENT_WEIGHT); //not correctly evalued
-        //var_dump(intval( count( $this->getPostUserWall($userId)) * SPODREPUTATION_CLASS_Constants::ONMYWALL_WEIGHT)." wall\n");
         $reputationValue += intval( count( $this->getPostUserWall($userId)) * SPODREPUTATION_CLASS_Constants::ONMYWALL_WEIGHT);
 
         SPODREPUTATION_BOL_Service::getInstance()->update($reputationValue,$userId);
