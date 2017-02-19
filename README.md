@@ -11,6 +11,7 @@ In detail, some methrics were found to evaluate reputation:
 * user's public room data (datalet, post, view)
 * datalet based on dataset, cocreated by the user
 * cocreation room joined
+
 After the initial evaluation, each time a user's profile is visited, the plugin updates the reputation for that user.
 The reputation system is extendable introducing some code into the evaluation.php file that contains a single public method that calls other protected methods, each of one evaluate one of the methrics. The added protected method that extend the evaluation system should have this signature
 ```
